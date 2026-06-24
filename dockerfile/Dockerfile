@@ -1,14 +1,13 @@
 #
-# Expected artifact layout on the host:
+# Layout:
 #
 #   artifact-root/
-#     .dockerignore
 #     docker/
 #       Dockerfile
 #     fusion/
 #       ... cloned repository contents ...
 #
-# Reviewer workflow:
+# Workflow:
 #
 #   cd artifact-root
 #   git clone https://github.com/doublehoon/fusion.git fusion
@@ -35,13 +34,6 @@ ENV LANG=C.UTF-8 \
     BOOGIE_EXE=/usr/local/bin/boogie \
     DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=true
 
-# Core artifact dependencies:
-# - Ubuntu 22.04 base
-# - OpenJDK 17 + sbt for building Gobra
-# - Python 3 installed from Ubuntu 22.04 apt repositories
-# - Z3 installed from Ubuntu 22.04 apt repositories
-# - Boogie 3.5.5 to match the current local environment
-# - procps for `pkill`, which the experiment driver may use for z3 cleanup
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     bash \
@@ -51,9 +43,9 @@ RUN apt-get update && \
     libicu70 \
     openjdk-17-jdk-headless \
     procps \
-    python3 \
+    python3.10 \
+    python3.10-venv \
     python3-pip \
-    python3-venv \
     unzip \
     zip \
     z3 && \
