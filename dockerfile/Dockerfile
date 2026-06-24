@@ -14,8 +14,6 @@
 #   docker build -t fusion-issta -f docker/Dockerfile .
 #   docker run --rm -it fusion-issta
 #
-# This Dockerfile expects the Docker build context to be `artifact-root/`.
-# It therefore copies `fusion/` from that build context into the image.
 #
 FROM ubuntu:22.04
 
